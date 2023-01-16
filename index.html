@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/cropped-compress.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tip calculator app</title>
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main
+      class="flex min-h-screen flex-col items-center justify-center bg-neutral-2"
+    >
+      <h1 class="sr-only">splitter</h1>
+      <img src="./images/logo.svg" alt="" />
+      <div class="mt-2 max-w-lg rounded-md bg-white p-4">
+        <div class="grid grid-cols-2 gap-x-2">
+          <div class="">
+            <form>
+              <div class="mb-6 grid gap-6">
+                <div>
+                  <label
+                    for="bill"
+                    class="mb-2 block text-sm font-medium text-gray-900"
+                    >Bill</label
+                  >
+                  <input
+                    type="number"
+                    id="bill"
+                    class="block w-full rounded-lg border border-gray-300 bg-neutral-1 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                
+                  <fieldset>
+                    <legend>Select tip %</legend>
+                    <ul class="grid grid-cols-3 gap-2">
+                      <li class="flex items-center">
+                        <input
+                          type="radio"
+                          name="tip"
+                          id="five"
+                          class="tip-option peer sr-only"
+                          value="5"
+                        />
+                        <label
+                          for="five"
+                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          >5%</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="radio"
+                          name="tip"
+                          id="ten"
+                          class="tip-option peer sr-only"
+                          value="10"
+                        />
+                        <label
+                          for="ten"
+                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          >10%</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="radio"
+                          name="tip"
+                          id="fifteen"
+                          class="tip-option peer sr-only"
+                          value="15"
+                        />
+                        <label
+                          for="fifteen"
+                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          >15%</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="radio"
+                          name="tip"
+                          id="twentyfive"
+                          class="tip-option peer sr-only"
+                          value="25"
+                        />
+                        <label
+                          for="twentyfive"
+                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          >25%</label
+                        >
+                      </li>
+                      <li class="flex items-center">
+                        <input
+                          type="radio"
+                          name="tip"
+                          id="fifty"
+                          class="tip-option peer sr-only"
+                          value="50"
+                        />
+                        <label
+                          for="fifty"
+                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          >50%</label
+                        >
+                      </li>
+                      <li id="customTipItem">
+                        <input
+                          type="radio"
+                          id="tip-custom"
+                          name="tip"
+                          value="custom"
+                          class="tip-option sr-only"
+                        />
+                        <label
+                          for="tip-custom"
+                          class="hover:bg-neutral-3"
+                          >Custom</label
+                        >
+                        <input
+                          type="number"
+                          min="0"
+                          step="1"
+                          class="border border-gray-300 bg-neutral-1 w-full hidden"
+                          id="custom-tip-input"
+                          aria-label="custom input"
+                        />
+                      </li>
+                    </ul>
+                  </fieldset>
+                  <div>
+                    <div class="flex justify-between items-center">
+                      <label
+                      for="numberOfPeople"
+                      class="mb-2 block text-sm font-medium text-gray-900"
+                      > Number of People</label
+                    >
+                    <span class="text-red-400 hidden">Can't be zero</span>
+                    </div>
+                    
+                    <input
+                      type="number"
+                      id="numberOfPeople"
+                      class="block w-full rounded-lg border border-gray-300 bg-neutral-1 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="rounded-md bg-neutral-5 p-2 text-white flex flex-col">
+            <div class="flex justify-between">
+              <span class="flex flex-col">
+                <span>Tip Amount</span> <span class="text-xs text-neutral-3">/ person</span>
+            </span>
+            <span class="text-4xl text-primary-1" id="tipAmount">0</span></div>
+        
+            <div class="flex justify-between my-3">
+              <span class="flex flex-col">
+                <span> Total </span> <span class="text-xs text-neutral-3">/ person</span>
+            </span>
+            <span class="text-4xl text-primary-1" id="total">$00</span></div>
+            <button class="w-full py-2  bg-primary-1 text-neutral-5 mt-auto rounded-md">
+              RESET</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </main>
+    <!-- <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        rel="noopener"
+        target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+    <script src="./utils.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
