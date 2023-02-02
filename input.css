@@ -3,7 +3,6 @@
 @tailwind utilities;
 @layer base {
   html {
-    font-size:12px;
     font-family: "Space Mono", monospace;
     font-weight: 700;
   }
@@ -11,13 +10,51 @@
 
 /* hide arrows
  Chrome, Safari, Edge, Opera */
- input::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   margin: 0 !important;
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield !important;
 }
+input[type="number"]:focus-visible {
+  outline: 0 !important;
+}
+label[for="bill"]::after {
+  content: url(../images/icon-dollar.svg);
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 10%;
+  transform: translate(-50%, 50%);
+}
+label[for="numberOfPeople"]::after {
+  content: url(../images/icon-person.svg);
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 20.8px;
+  transform: translate(-50%, 50%);
+}
+.tip-list{
+  grid-template-columns:repeat(3,118px);
+}
+.tip-list > li:not(:last-child) label {
+  @apply w-full cursor-pointer rounded-lg bg-neutral-5 text-center text-2xl text-white duration-300 hover:bg-neutral-2 hover:text-neutral-5 py-2.5;
+}
+
+.form-control input[type="number"] {
+  @apply block w-full rounded-lg border-0 bg-neutral-1 p-3 text-right text-2xl text-gray-900 focus:border-blue-500 focus:ring-blue-500;
+}
+input[type="number"].invalid-input {
+  border: 2px solid red;
+}
+input[type="number"].invalid-input:focus {
+  border: 2px solid red;
+}
+/* @media (min-width: 1024px)  {
+  .tip-list{
+    grid-template-columns:repeat(3,118px);
+  }
+} */

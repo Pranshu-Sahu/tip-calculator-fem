@@ -27,46 +27,50 @@
     </style>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-neutral-2">
     <main
-      class="flex min-h-screen flex-col items-center justify-center bg-neutral-2"
-    >
+      class="flex flex-col items-center justify-center min-h-screen lg:mt-[164px]">
+    
       <h1 class="sr-only">splitter</h1>
       <img src="./images/logo.svg" alt="" />
-      <div class="mt-2 max-w-lg rounded-md bg-white p-4">
-        <div class="grid grid-cols-2 gap-x-2">
-          <div class="">
-            <form>
-              <div class="mb-6 grid gap-6">
-                <div>
+      <!-- calculator container -->
+      <div class="max-w-[918] rounded-2xl bg-white p-4 lg:p-8 lg:mt-[86px]">
+        <div class="grid grid-cols-2 gap-x-2 lg:gap-x-12">
+          <div class="p-4">
+            <form id="form">
+             
+                <!-- bill input container -->
+                <div class="mb-11 form-control">
                   <label
                     for="bill"
-                    class="mb-2 block text-sm font-medium text-gray-900"
+                    class="relative block mb-3 text-sm font-medium text-neutral-4"
                     >Bill</label
                   >
                   <input
                     type="number"
                     id="bill"
-                    class="block w-full rounded-lg border border-gray-300 bg-neutral-1 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                    min="0"
+                    step="1"
                     required
+                    placeholder="0"
                   />
                 </div>
-                
-                  <fieldset>
-                    <legend>Select tip %</legend>
-                    <ul class="grid grid-cols-3 gap-2">
+                <!-- tip input container -->
+                  <fieldset class="mb-10">
+                    <legend class="mb-4 text-neutral-4">Select tip %</legend>
+                    <ul class="grid gap-2 tip-list">
                       <li class="flex items-center">
                         <input
                           type="radio"
                           name="tip"
                           id="five"
-                          class="tip-option peer sr-only"
+                          class="sr-only tip-option peer"
                           value="5"
                         />
                         <label
                           for="five"
-                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
-                          >5%</label
+                          class="peer-checked:bg-primary-1"
+                          >5% </label
                         >
                       </li>
                       <li class="flex items-center">
@@ -74,12 +78,12 @@
                           type="radio"
                           name="tip"
                           id="ten"
-                          class="tip-option peer sr-only"
+                          class="sr-only tip-option peer"
                           value="10"
                         />
                         <label
                           for="ten"
-                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          class="peer-checked:bg-primary-1"
                           >10%</label
                         >
                       </li>
@@ -88,12 +92,12 @@
                           type="radio"
                           name="tip"
                           id="fifteen"
-                          class="tip-option peer sr-only"
+                          class="sr-only tip-option peer"
                           value="15"
                         />
                         <label
                           for="fifteen"
-                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          class="peer-checked:bg-primary-1"
                           >15%</label
                         >
                       </li>
@@ -102,12 +106,12 @@
                           type="radio"
                           name="tip"
                           id="twentyfive"
-                          class="tip-option peer sr-only"
+                          class="sr-only tip-option peer"
                           value="25"
                         />
                         <label
                           for="twentyfive"
-                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          class="peer-checked:bg-primary-1"
                           >25%</label
                         >
                       </li>
@@ -116,12 +120,12 @@
                           type="radio"
                           name="tip"
                           id="fifty"
-                          class="tip-option peer sr-only"
+                          class="sr-only tip-option peer"
                           value="50"
                         />
                         <label
                           for="fifty"
-                          class="w-full bg-neutral-5 text-center peer-checked:bg-neutral-4"
+                          class="peer-checked:bg-primary-1"
                           >50%</label
                         >
                       </li>
@@ -131,7 +135,7 @@
                           id="tip-custom"
                           name="tip"
                           value="custom"
-                          class="tip-option sr-only"
+                          class="sr-only tip-option"
                         />
                         <label
                           for="tip-custom"
@@ -142,61 +146,65 @@
                           type="number"
                           min="0"
                           step="1"
-                          class="border border-gray-300 bg-neutral-1 w-full hidden"
+                          class="hidden w-full border border-gray-300 bg-neutral-1"
                           id="custom-tip-input"
                           aria-label="custom input"
                         />
                       </li>
                     </ul>
                   </fieldset>
-                  <div>
-                    <div class="flex justify-between items-center">
+                  <!-- number of people -->
+                  <div class="form-control">
+                    <div class="flex items-center justify-between">
                       <label
                       for="numberOfPeople"
-                      class="mb-2 block text-sm font-medium text-gray-900"
+                      class="relative block mb-2 text-sm font-medium text-neutral-4"
                       > Number of People</label
                     >
-                    <span class="text-red-400 hidden">Can't be zero</span>
+                    <span class="hidden text-xs text-red-400" id="error">Can't be zero</span>
                     </div>
                     
                     <input
                       type="number"
                       id="numberOfPeople"
-                      class="block w-full rounded-lg border border-gray-300 bg-neutral-1 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                      class="error placeholder:text-right " 
+                      placeholder="0"
+                      min="0"
+                      step="1"
                       required
                     />
                   </div>
-              </div>
+             
             </form>
           </div>
-          <div class="rounded-md bg-neutral-5 p-2 text-white flex flex-col">
+          <div class="flex flex-col p-2 text-white rounded-xl lg:pt-14 lg:pb-10 lg:px-10 bg-neutral-5">
             <div class="flex justify-between">
               <span class="flex flex-col">
                 <span>Tip Amount</span> <span class="text-xs text-neutral-3">/ person</span>
             </span>
-            <span class="text-4xl text-primary-1" id="tipAmount">0</span></div>
+            <span class="text-5xl text-primary-1" id="tipAmount">$0.00</span></div>
         
             <div class="flex justify-between my-3">
               <span class="flex flex-col">
                 <span> Total </span> <span class="text-xs text-neutral-3">/ person</span>
             </span>
-            <span class="text-4xl text-primary-1" id="total">$00</span></div>
-            <button class="w-full py-2  bg-primary-1 text-neutral-5 mt-auto rounded-md">
+            <span class="text-5xl text-primary-1" id="total">$0.00</span></div>
+            <button id="reset" class="w-full py-2  bg-primary-1 text-neutral-5 mt-auto rounded-md hover:-translate-y-0.5 duration-300">
               RESET</button>
           </div>
         </div>
         </div>
       </div>
+      <footer class="attribution">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          rel="noopener"
+          target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Pranshu Sahu</a>.
+      </footer>
     </main>
-    <!-- <div class="attribution">
-      Challenge by
-      <a
-        href="https://www.frontendmentor.io?ref=challenge"
-        rel="noopener"
-        target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div> -->
     <script src="./utils.js"></script>
     <script src="./app.js"></script>
   </body>
